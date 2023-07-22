@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: env-ingress
+  namespace: argocd
+  labels:
+    kcert.dev/ingress: "managed"
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - hosts:
+    - gitops.agileguru.org
+    secretName: gitops-gitops-org
+  rules:
+  - host: gitops.agileguru.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: argocd-service
+            port: 
+                number: 80

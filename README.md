@@ -1,6 +1,8 @@
-# gitops_argo_cd
+# How to Install ARGO-CD
 
-* kubectl create namespace argocd
-* kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+* kubectl apply -f 1_namespace.yaml
+* kubectl apply -f 2_kcert.yml
+* kubectl apply -f 3_install.yaml -n argocd
+* kubectl apply -f 4_ingress.yaml
 * kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=”{.data.password}” | base64 -d
 
